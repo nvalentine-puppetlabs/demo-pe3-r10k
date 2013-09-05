@@ -3,5 +3,7 @@
 .vagrant
 .tmp
 .librarian
+.pe_build
 puppet/modules
 Puppetfile.lock
+.cache/*.gz
