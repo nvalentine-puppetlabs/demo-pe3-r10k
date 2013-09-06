@@ -1,5 +1,12 @@
 node 'base' {
   include ntp
+  ini_setting { 'set puppet agent environment':
+    ensure => present,
+    path => '/etc/puppetlabs/puppet/puppet.conf',
+    section => 'agent',
+    setting => 'environment',
+    value => 'dev',
+  }
 }
 
 node /^master.*$/ inherits base {
@@ -47,6 +54,10 @@ node /^master.*$/ inherits base {
     section => 'main',
     setting => 'heira_config',
     value => '/etc/puppetlabs/puppet/environments/$environment/hiera.yaml',
+  }
+
+  Ini_setting['set puppet agent environment'] {
+    value => 'production',
   }
 }
 
