@@ -22,12 +22,13 @@ node /^master.*$/ inherits base {
   file { 'r10k environments dir':
     ensure => directory,
     path => '/etc/puppetlabs/puppet/environments',
-    require => Package['git'],
   }
   
   class { 'r10k': 
     remote => 'git://github.com/nvalentine-puppetlabs/demo-pe3-r10k-environments',
-    require => File['r10k environments dir'],
+  } -> exec { '/opt/puppet/bin/r10k sync': 
+    path => ['/bin','/sbin','/usr/bin','/usr/sbin'],
+    require => [Package['git'],File['r10k environment dir']],
   }
   include r10k::prerun_command
   include r10k::mcollective
