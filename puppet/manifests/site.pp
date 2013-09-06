@@ -28,7 +28,7 @@ node /^master.*$/ inherits base {
     remote => 'git://github.com/nvalentine-puppetlabs/demo-pe3-r10k-environments',
   } -> exec { '/opt/puppet/bin/r10k sync': 
     path => ['/bin','/sbin','/usr/bin','/usr/sbin'],
-    require => [Package['git'],File['r10k environment dir']],
+    require => [Package['git'],File['r10k environments dir']],
   }
   include r10k::prerun_command
   include r10k::mcollective
