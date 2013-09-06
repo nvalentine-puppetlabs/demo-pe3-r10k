@@ -5,14 +5,22 @@ node 'base' {
 node /^master.*$/ inherits base {
   class { 'firewall': ensure => stopped, }
 
+  file { '/usr/local/bin/r10k':
+    ensure => link,
+    target => '/opt/puppet/bin/r10k',
+  }
+
+  package { 'git': ensure => present, }
+
   file { 'r10k environments dir':
     ensure => directory,
     path => '/etc/puppetlabs/puppet/environments',
+    require => Package['git'],
   }
   
   class { 'r10k': 
-    remote => 'git@github.com:nvalentine-puppetlabs/demo-pe3-r10k-environments',
-    require => File['r10k enviroments dir'],
+    remote => 'git://github.com/nvalentine-puppetlabs/demo-pe3-r10k-environments',
+    require => File['r10k environments dir'],
   }
   include r10k::prerun_command
   include r10k::mcollective
