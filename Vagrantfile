@@ -7,8 +7,6 @@ Vagrant.configure('2') do |config|
 
   ## master
   config.vm.define 'master' do |m|
-    m.vm.box = 'centos-6.4-x86_64-cm'
-    m.vm.box_url = 'http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box'
     m.vm.hostname = 'master.r10k.puppetlabs.vm'
     m.vm.network :private_network, :auto_network => true
     m.vm.provision :hosts do |hosts|
@@ -22,12 +20,13 @@ Vagrant.configure('2') do |config|
       bstrap.role = :master
       bstrap.verbose = true
     end
-    m.vm.provision :puppet do |puppet|
-      puppet.manifests_path = 'puppet/manifests'
-      puppet.manifest_file = 'site.pp'
-      puppet.module_path = 'puppet/modules'
-      puppet.options = '--verbose --debug'
-    end
+    m.vm.provision :shell, :path => 'puppet/runpuppet.sh'
+#    m.vm.provision :puppet do |puppet|
+#      puppet.manifests_path = 'puppet/manifests'
+#      puppet.manifest_file = 'site.pp'
+#      puppet.module_path = 'puppet/modules'
+#      puppet.options = '--verbose --debug'
+#    end
   end
 
   ## agent0

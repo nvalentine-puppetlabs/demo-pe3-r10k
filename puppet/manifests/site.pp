@@ -10,11 +10,8 @@ node 'base' {
 }
 
 node /^master.*$/ inherits base {
-  class { 'firewall': ensure => stopped, }
-
-  file { '/usr/local/bin/r10k':
-    ensure => link,
-    target => '/opt/puppet/bin/r10k',
+  if $::osfamily == 'redhat' {
+    class { 'firewall': ensure => stopped, }
   }
 
   package { 'git': ensure => present, }
@@ -23,13 +20,16 @@ node /^master.*$/ inherits base {
     ensure => directory,
     path => '/etc/puppetlabs/puppet/environments',
   }
-  
+ 
   class { 'r10k': 
     remote => 'git://github.com/nvalentine-puppetlabs/demo-pe3-r10k-environments',
-  } -> exec { '/opt/puppet/bin/r10k sync': 
-    path => ['/bin','/sbin','/usr/bin','/usr/sbin'],
-    require => [Package['git'],File['r10k environments dir']],
+  } 
+
+  exec { 'r10k deploy environment --puppetfile':
+    path => ['/bin','/sbin','/usr/bin','/usr/sbin','/opt/puppet/bin'],
+    require => [Package['git'],File['r10k environments dir'],Class['r10k::install']],
   }
+
   include r10k::prerun_command
   include r10k::mcollective
 
