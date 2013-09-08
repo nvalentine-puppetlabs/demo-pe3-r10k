@@ -1,4 +1,4 @@
-dev-puppet-module
+demo-pe3-r10k
 =================
 
 Vagrant environment for demo'ing PE3 w/ r10k and current best practices for building out
