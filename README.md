@@ -21,3 +21,5 @@ Vagrant environment for demo'ing PE3 w/ r10k.
 
 # Notes
   * Login to console via: https://localhost:8443 w/ creds: admin@puppetlabs.com/puppetlabs.
+  * r10k builds out environments in master:/etc/puppetlabs/puppet/environments based on the branches in githhub.com/nvalentine-puppetlabs/demo-pe3-r10k-environments. You can point r10k to a different repo by modifying the code in puppet/manifests/site.pp.
+  * The Puppetfile currently pulls in nvalentine-puppetlabs/r10k which has an open PR against acidprime/r10k which adds anchors to the base class r10k.
