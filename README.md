@@ -1,7 +1,22 @@
 dev-puppet-module
 =================
 
-Vagrant environment for demo'ing PE3 w/ r10k.
+Vagrant environment for demo'ing PE3 w/ r10k and current best practices for building out
+self-contained environments (classification, code & data bindings) per recent Pro Services
+discussions. 
+
+The r10k setup leverages the work done in the
+zack/r10k Forge module. This includes a custom pre-run command in puppet.conf and an MCollective
+plug-in to allow r10k operations via Live Management in the Enterprise Console.
+
+Also, the environments built out by r10k aim to be self-contained. Meaning the directories include:
+  * hiera.yaml
+  * hierdata directory
+  * modules directory built out via Puppetfile
+  * manifests/site.pp for classification via code
+
+Note that this structure for self-contained environments is roughly compatible with the recent
+work done by Eric Shamow and Carl Caum on Puppet Enterprise Continuous Delivery support.
 
 # Requirements
   * VirtualBox 1.4.x
