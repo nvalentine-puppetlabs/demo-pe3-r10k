@@ -49,12 +49,18 @@ node /^master.*$/ inherits base {
     value => '/etc/puppetlabs/puppet/environments/$environment/manifests/site.pp',
   }
 
-  ini_setting { 'hiera path':
-    ensure => present,
-    path => '/etc/puppetlabs/puppet/puppet.conf',
-    section => 'main',
-    setting => 'heira_config',
-    value => '/etc/puppetlabs/puppet/environments/$environment/hiera.yaml',
+# hiera.yaml is read only at master startup thus this will not work!
+#  ini_setting { 'hiera path':
+#    ensure => present,
+#    path => '/etc/puppetlabs/puppet/puppet.conf',
+#    section => 'main',
+#    setting => 'heira_config',
+#    value => '/etc/puppetlabs/puppet/environments/$environment/hiera.yaml',
+#  }
+
+  file { '/etc/puppetlabs/puppet/hiera.yaml':
+    ensure => file, mode => '0755', owner => 'root', mode => 'root',
+    source => 'file:///vagrant/puppet/files/hiera.yaml',
   }
 
   Ini_setting['set puppet agent environment'] {
@@ -64,4 +70,15 @@ node /^master.*$/ inherits base {
 
 node default inherits base {
   notify { "Node ${::hostname} received default node classification!": }
+
+  file { '/tmp/runpuppet.sh':
+    ensure => 'file',
+    mode => '0755',
+    owner => 'root',
+    group => 'root',
+    content => "#!/bin/bash\npuppet agent -t",
+  } -> exec { 'at now + 1 min -f /tmp/runpuppet.sh':
+    path => ['/bin', '/sbin', '/usr/bin', '/usr/sbin', '/opt/puppet/bin'],
+  }
+
 }
