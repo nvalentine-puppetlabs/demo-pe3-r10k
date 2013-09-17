@@ -61,7 +61,10 @@ node /^master.*$/ inherits base {
   file { '/etc/puppetlabs/puppet/hiera.yaml':
     ensure => file, mode => '0755', owner => 'root', mode => 'root',
     source => 'file:///vagrant/puppet/files/hiera.yaml',
+    notify => Service['pe-httpd'],
   }
+
+  service { 'pe-httpd': ensure => running, }
 
   Ini_setting['set puppet agent environment'] {
     value => 'production',
