@@ -59,7 +59,7 @@ node /^master.*$/ inherits base {
 #  }
 
   file { '/etc/puppetlabs/puppet/hiera.yaml':
-    ensure => file, mode => '0755', owner => 'root', mode => 'root',
+    ensure => file, mode => '0755', owner => 'root', group => 'root',
     source => 'file:///vagrant/puppet/files/hiera.yaml',
     notify => Service['pe-httpd'],
   }
