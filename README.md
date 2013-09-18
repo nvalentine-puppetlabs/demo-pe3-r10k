@@ -18,7 +18,7 @@ Note that this structure for self-contained environments is roughly compatible w
 work done by Eric Shamow and Carl Caum on Puppet Enterprise Continuous Delivery support.
 
 # Requirements
-  * VirtualBox 1.4.x
+  * VirtualBox >= 4.2
   * Vagrant >= 1.2
   * vagrant-pe_build ( '$ vagrant plugin install vagrant-pe_build' )
   * vagrant-auto_network ( '$ vagrant plugin install vagrant-auto_network' )
