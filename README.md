@@ -10,7 +10,6 @@ zack/r10k Forge module. This includes a custom pre-run command in puppet.conf an
 plug-in to allow r10k operations via Live Management in the Enterprise Console.
 
 Also, the environments built out by r10k aim to be self-contained. Meaning the directories include:
-  * hiera.yaml
   * hierdata directory
   * modules directory built out via Puppetfile
   * manifests/site.pp for classification via code
@@ -20,7 +19,7 @@ work done by Eric Shamow and Carl Caum on Puppet Enterprise Continuous Delivery 
 
 # Requirements
   * VirtualBox 1.4.x
-  * Vagrant 1.2
+  * Vagrant >= 1.2
   * vagrant-pe_build ( '$ vagrant plugin install vagrant-pe_build' )
   * vagrant-auto_network ( '$ vagrant plugin install vagrant-auto_network' )
   * vagrant-hosts ( '$ vagrant plugin install vagrant-hosts' )
@@ -28,7 +27,7 @@ work done by Eric Shamow and Carl Caum on Puppet Enterprise Continuous Delivery 
 
 # Usage
     $ cd <repo>
-    $ (cd puppet && librarian-puppet install)
+    $ (cd puppet && librarian-puppet install --verbose)
     $ cd .cache
     $ wget -c http://s3.amazonaws.com/pe-builds/released/3.0.1/puppet-enterprise-3.0.1-ubuntu-12.04-amd64.tar.gz
     $ wget -c https://s3.amazonaws.com/pe-builds/released/3.0.1/puppet-enterprise-3.0.1-el-6-x86_64.tar.gz
