@@ -7,7 +7,7 @@ Vagrant.configure('2') do |config|
 
   ## master
   config.vm.define 'master' do |m|
-    m.vm.hostname = 'master.r10k.puppetlabs.vm'
+    m.vm.hostname = 'master'
     m.vm.network :private_network, :auto_network => true, :ip => '0.0.0.0'
     m.vm.provision :hosts do |hosts|
       hosts.autoconfigure = true
@@ -30,7 +30,7 @@ Vagrant.configure('2') do |config|
 
   ## agent0
   config.vm.define 'agent0' do |a|
-    a.vm.hostname = 'agent0.r10k.puppetlabs.vm'
+    a.vm.hostname = 'agent0'
     a.vm.network :private_network, :auto_network => true, :ip => '0.0.0.0'
     a.vm.provision :hosts do |hosts|
       hosts.autoconfigure = true
@@ -42,7 +42,7 @@ Vagrant.configure('2') do |config|
   config.vm.define 'agent1' do |a|
     a.vm.box = 'centos-6.4-x86_64-nocm'
     a.vm.box_url = 'http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210-nocm.box'
-    a.vm.hostname = 'agent1.r10k.puppetlabs.vm'
+    a.vm.hostname = 'agent1'
     a.vm.network :private_network, :auto_network => true, :ip => '0.0.0.0'
     a.vm.provision :hosts do |hosts|
       hosts.autoconfigure = true
