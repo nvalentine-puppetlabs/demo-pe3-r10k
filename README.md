@@ -38,6 +38,7 @@ almost certainly want to wipe out old VMs and settings before doing a 'vagrant u
 
 # Usage 
 (perhaps after Upgrade directions above)
+
     $ cd <repo>
     $ (cd puppet && librarian-puppet install --verbose)
     $ vagrant up
