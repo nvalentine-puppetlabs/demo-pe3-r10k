@@ -1,5 +1,6 @@
 node 'base' {
   include ntp
+
   ini_setting { 'set puppet agent environment':
     ensure => present,
     path => '/etc/puppetlabs/puppet/puppet.conf',
@@ -22,7 +23,7 @@ node /^master.*$/ inherits base {
   }
  
   class { 'r10k': 
-    remote => 'git://github.com/nvalentine-puppetlabs/demo-pe3-r10k-environments',
+    remote => hiera('r10k_repo', 'git://github.com/nvalentine-puppetlabs/demo-pe3-r10k-environments')
   } 
 
   exec { 'r10k deploy environment --puppetfile':
@@ -31,7 +32,7 @@ node /^master.*$/ inherits base {
   }
 
   #include r10k::prerun_command
-  #include r10k::mcollective
+  include r10k::mcollective
 
   ini_setting { 'master module path':
     ensure => present,
@@ -83,5 +84,4 @@ node default inherits base {
   } -> exec { 'at now + 1 min -f /tmp/runpuppet.sh':
     path => ['/bin', '/sbin', '/usr/bin', '/usr/sbin', '/opt/puppet/bin'],
   }
-
 }
