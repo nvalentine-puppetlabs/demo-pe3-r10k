@@ -1,0 +1,16 @@
+---
+vms:
+  - name: master
+    box: ubuntu-server-12042-x64-vbox4210-nocm
+    roles:
+      - pe-puppet-master
+
+  - name: ubuntu0
+    box: ubuntu-server-12042-x64-vbox4210-nocm
+    roles:
+      - pe-puppet-agent
+
+  - name: centos0
+    box: centos-64-x64-vbox4210-nocm
+    roles:
+      - pe-puppet-agent

@@ -1,0 +1,6 @@
+---
+# Boxes from http://puppet-vagrant-boxes.puppetlabs.com/
+# Updated: 2013-08-08
+boxes:
+  'centos-64-x64-vbox4210-nocm': 'http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210-nocm.box'
+  'ubuntu-server-12042-x64-vbox4210-nocm': 'http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box'
