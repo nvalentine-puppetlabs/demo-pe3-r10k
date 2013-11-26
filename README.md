@@ -50,7 +50,7 @@ almost certainly want to wipe out old VMs and settings before doing a 'vagrant u
 
 # Troubleshooting
   * vagrant-hosts sometimes fails to insert the master's hostname into the /etc/hosts files on the agent VMs. One work-around is to run 'vagrant provision' a couple of times until the necessary entries have been generated.
-  * For bug reports, the following command will be surpremely useful (to me).
+  * For bug reports, the following command will be surpremely useful (to me):
 
     $ VAGRANT_LOG=DEBUG vagrant up 2>&1 | tee /tmp/demo-pe-r10k-vagrant.runlog
 
