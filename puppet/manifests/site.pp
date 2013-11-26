@@ -31,7 +31,7 @@ node /^master.*$/ inherits base {
   }
 
   #include r10k::prerun_command
-  #include r10k::mcollective
+  include r10k::mcollective
 
   ini_setting { 'master module path':
     ensure => present,
@@ -83,5 +83,4 @@ node default inherits base {
   } -> exec { 'at now + 1 min -f /tmp/runpuppet.sh':
     path => ['/bin', '/sbin', '/usr/bin', '/usr/sbin', '/opt/puppet/bin'],
   }
-
 }
