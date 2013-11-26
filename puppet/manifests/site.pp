@@ -1,5 +1,6 @@
 node 'base' {
   include ntp
+
   ini_setting { 'set puppet agent environment':
     ensure => present,
     path => '/etc/puppetlabs/puppet/puppet.conf',

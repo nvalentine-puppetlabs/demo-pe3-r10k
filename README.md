@@ -26,7 +26,17 @@ work done by Eric Shamow and Carl Caum on Puppet Enterprise Continuous Delivery 
   * vagrant-hosts ( '$ vagrant plugin install vagrant-hosts' )
   * librarian-puppet ( '$ sudo gem install librarian-puppet' )
 
-# Usage
+# Upgrades
+The environment has been ported to the Vagrant oscar plugin as of release 2.0.0. Users of 1.0.0 will
+almost certainly want to wipe out old VMs and settings before doing a 'vagrant up' with the new release:
+  
+    $ cd <repo>
+    $ vagrant destroy -f
+    $ rm -rf .vagrant
+    $ (cd puppet && rm -rf modules)
+    $ git pull
+
+# Usage (perhaps after Upgrade directions above)
     $ cd <repo>
     $ (cd puppet && librarian-puppet install --verbose)
     $ vagrant up
@@ -35,6 +45,12 @@ work done by Eric Shamow and Carl Caum on Puppet Enterprise Continuous Delivery 
   * The vagrant environment will download the required Vagrant baseboxes if they've not already been installed. This can result in quite a long first run.
   * Login to console via: https://<master eth1 IP> w/ creds: admin@puppetlabs.com/puppetlabs.
   * r10k builds out environments in master:/etc/puppetlabs/puppet/environments based on the branches in githhub.com/nvalentine-puppetlabs/demo-pe3-r10k-environments. You can point r10k to a different repo by modifying the code in puppet/manifests/site.pp.
+
+# Troubleshooting
+  * vagrant-hosts sometimes fails to insert the master's hostname into the /etc/hosts files on the agent VMs. One work-around is to run 'vagrant provision' a couple of times until the necessary entries have been generated.
+  * For bug reports, the following command will be surpremely useful (to me):
+    
+    $ VAGRANT_LOG=DEBUG vagrant up
 
 # Implementation details
   * There's currently a bug in the vagrant-auto_network plugin that necessitates having each VM
