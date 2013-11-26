@@ -22,7 +22,7 @@ node /^master.*$/ inherits base {
   }
  
   class { 'r10k': 
-    remote => 'git://github.com/nvalentine-puppetlabs/demo-pe3-r10k-environments',
+    remote => hiera('r10k_repo', 'git://github.com/nvalentine-puppetlabs/demo-pe3-r10k-environments')
   } 
 
   exec { 'r10k deploy environment --puppetfile':
