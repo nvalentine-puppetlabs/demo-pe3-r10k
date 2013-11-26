@@ -49,7 +49,7 @@ almost certainly want to wipe out old VMs and settings before doing a 'vagrant u
   * r10k builds out environments in master:/etc/puppetlabs/puppet/environments based on the branches in githhub.com/nvalentine-puppetlabs/demo-pe3-r10k-environments. You can point r10k to a different repo by modifying the code in puppet/manifests/site.pp.
 
 # Troubleshooting
-  * vagrant-hosts sometimes fails to insert the master's hostname into the /etc/hosts files on the agent VMs. One work-around is to run 'vagrant provision' a couple of times until the necessary entries have been generated.
+  * vagrant-hosts sometimes fails to insert the master's hostname into the /etc/hosts files on the agent VMs. One work-around is to run 'vagrant provision --provision-with hosts' a couple of times until the necessary entries have been generated.
   * For bug reports, the following command will be surpremely useful (to me):
 
     $ VAGRANT_LOG=DEBUG vagrant up 2>&1 | tee /tmp/demo-pe-r10k-vagrant.runlog
