@@ -26,9 +26,11 @@ node /^master.*$/ inherits base {
     remote => hiera('r10k_repo', 'git://github.com/nvalentine-puppetlabs/demo-pe3-r10k-environments')
   } 
 
-  exec { 'r10k deploy environment --puppetfile':
+  exec { 'r10k deploy environment --puppetfile --verbose':
     path => ['/bin','/sbin','/usr/bin','/usr/sbin','/opt/puppet/bin'],
     require => [Package['git'],File['r10k environments dir'],Class['r10k::install']],
+    tries => 3,
+    try_sleep => 10,
   }
 
   #include r10k::prerun_command

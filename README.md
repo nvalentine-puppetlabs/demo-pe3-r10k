@@ -1,7 +1,7 @@
 demo-pe3-r10k
 =================
 
-Vagrant environment for demo'ing PE3 w/ r10k and current best practices for building out
+Vagrant environment for demo'ing PE3 w/ [r10k](http://github.com/adrienthebo/r10k) and current best practices for building out
 self-contained environments (classification, code & data bindings) per recent Pro Services
 discussions. 
 
