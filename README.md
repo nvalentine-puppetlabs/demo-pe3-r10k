@@ -17,6 +17,14 @@ Also, the environments built out by r10k aim to be self-contained. Meaning the d
 Note that this structure for self-contained environments is roughly compatible with the recent
 work done by Eric Shamow and Carl Caum on Puppet Enterprise Continuous Delivery support.
 
+# References
+
+Supporting materials to help you grok the problem r10k tries to solve and the approach:
+
+  * [Git Submodules Are Probably Not The Anwser](http://somethingsinistral.net/blog/git-submodules-are-probably-not-the-answer/)
+  * [Rethinking Puppet Deployment](http://somethingsinistral.net/blog/rethinking-puppet-deployment/)
+  * [Puppet Infrastructure with R10K](http://terrarum.net/administration/puppet-infrastructure-with-r10k.html)
+
 # Requirements
   * VirtualBox >= 4.2
   * Vagrant >= 1.2
