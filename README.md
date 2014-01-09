@@ -17,7 +17,7 @@ Also, the environments built out by r10k aim to be self-contained. Meaning the d
 Note that this structure for self-contained environments is roughly compatible with the recent
 work done by Eric Shamow and Carl Caum on Puppet Enterprise Continuous Delivery support.
 
-# References
+# References & Supporting Materials
 
 Supporting materials to help you grok the problem r10k tries to solve and the approach:
 
